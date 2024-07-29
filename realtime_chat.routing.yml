@@ -1,0 +1,7 @@
+realtime_chat.chat:
+  path: '/chat'
+  defaults:
+    _controller: 'Drupal\realtime_chat\Controller\ChatController::chatPage'
+    _title: 'Realtime Chat'
+  requirements:
+    _permission: 'access content'

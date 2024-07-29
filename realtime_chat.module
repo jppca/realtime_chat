@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function realtime_chat_theme($existing, $type, $theme, $path) {
+  return [
+    'realtime_chat' => [
+      'variables' => [],
+      'template' => 'realtime-chat',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function realtime_chat_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'realtime_chat/realtime_chat';
+}

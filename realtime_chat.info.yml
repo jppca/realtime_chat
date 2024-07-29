@@ -1,0 +1,5 @@
+name: 'Realtime Chat'
+type: module
+description: 'Module for real-time chat.'
+package: Custom
+core_version_requirement: ^10

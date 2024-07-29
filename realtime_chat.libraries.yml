@@ -1,0 +1,7 @@
+realtime_chat:
+  version: 1.x
+  js:
+    js/realtime_chat.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
