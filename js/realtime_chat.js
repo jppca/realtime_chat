@@ -24,9 +24,25 @@
       $('#send-message').click(function () {
         var message = $('#message').val();
         if (message) {
+          // Send message via WebSocket
           socket.send(message);
-          $('#message').val('');
+
+          // Save message in database
+          $.post('/chat/save-message', { message: message }, function (data) {
+            if (data.status === 'ok') {
+              $('#message').val('');
+            } else {
+              console.error('Failed to save message');
+            }
+          });
         }
+      });
+
+      // get messages from the database on page load
+      $.get('/chat/get-messages', function (data) {
+        data.forEach(function (msg) {
+          $('#chat-messages').append('<div><strong>' + msg.username + ':</strong> ' + msg.message + ' <em>' + msg.created + '</em></div>');
+        });
       });
     }
   };

@@ -67,6 +67,7 @@ nbproject/*
 # NPM
 npm-debug.log
 node_modules
+package-lock.json
 
 # Drush 9 Checksums
 drush/sites/.checksums

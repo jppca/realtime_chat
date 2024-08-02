@@ -1,7 +1,23 @@
-realtime_chat.chat:
+realtime_chat.page:
   path: '/chat'
   defaults:
     _controller: 'Drupal\realtime_chat\Controller\ChatController::chatPage'
-    _title: 'Realtime Chat'
+    _title: 'Real-time Chat'
+  requirements:
+    _permission: 'access content'
+
+realtime_chat.save_message:
+  path: '/chat/save-message'
+  defaults:
+    _controller: 'Drupal\realtime_chat\Controller\ChatController::saveMessage'
+  methods: ['POST']
+  requirements:
+    _permission: 'access content'
+
+realtime_chat.get_messages:
+  path: '/chat/get-messages'
+  defaults:
+    _controller: 'Drupal\realtime_chat\Controller\ChatController::getMessages'
+  methods: ['GET']
   requirements:
     _permission: 'access content'
