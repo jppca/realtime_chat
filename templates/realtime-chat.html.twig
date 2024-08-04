@@ -1,5 +1,27 @@
 {# chat-page  #}
-<div id="chat-messages"></div>
-<input type="text" id="message" placeholder="Escribe un mensaje...">
-<button id="send-message">Enviar</button>
-
+<div class="wrapper-ui-chat">
+{%if user.account.name %}
+  <div id="user-name">{{user.account.name}}</div>
+{%else%}
+  <div id="user-name">Anonymous</div>
+{%endif%}
+  <div id="date-now">{{ "now"|date("Y-m-d H:i:s") }}</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-2">
+        <div id="active-users">
+          <div><strong>Active Users</strong></div>
+          <div>jparra</div>
+          <div>aparra</div>
+        </div>
+      </div>
+      <div class="col-10">
+        <div id="chat-messages"></div>
+        <div class="wrapper-form">
+          <input type="text" id="message" placeholder="Escribe un mensaje...">
+          <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

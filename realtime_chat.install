@@ -10,8 +10,8 @@ function realtime_chat_install() {
         'type' => 'serial',
         'not null' => TRUE,
       ],
-      'uid' => [
-        'type' => 'int',
+      'user' => [
+        'type' => 'text',
         'not null' => TRUE,
       ],
       'message' => [
@@ -19,7 +19,7 @@ function realtime_chat_install() {
         'not null' => TRUE,
       ],
       'created' => [
-        'type' => 'int',
+        'type' => 'text',
         'not null' => TRUE,
       ],
     ],

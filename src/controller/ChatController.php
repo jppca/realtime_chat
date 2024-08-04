@@ -21,13 +21,13 @@ class ChatController extends ControllerBase {
   }
 
   public function saveMessage(Request $request) {
-    $message = $request->request->get('message');
-    $uid = \Drupal::currentUser()->id();
-    $created = time();
+    $user = $request->request->get('messageUser');
+    $message = $request->request->get('messageText');
+    $created = $request->request->get('messageCreated');
 
     \Drupal::database()->insert('chat_messages')
       ->fields([
-        'uid' => $uid,
+        'user' => $user,
         'message' => $message,
         'created' => $created,
       ])
@@ -39,18 +39,18 @@ class ChatController extends ControllerBase {
   public function getMessages() {
     try {
       $result = \Drupal::database()->select('chat_messages', 'c')
-        ->fields('c', ['id', 'uid', 'message', 'created'])
+        ->fields('c', ['id', 'user', 'message', 'created'])
         ->execute()
         ->fetchAll();
 
       $messages = [];
       foreach ($result as $record) {
-        $user = User::load($record->uid);
+        $user = $record->user;
         $messages[] = [
           'id' => $record->id,
-          'username' => $user ? $user->getDisplayName() : 'Anonymous',
-          'message' => $record->message,
-          'created' => date('Y-m-d H:i:s', $record->created),
+          'messageUser' => $user ? $user : 'Anonymous',
+          'messageText' => $record->message,
+          'messageCreated' => $record->created,
         ];
       }
 
@@ -61,4 +61,3 @@ class ChatController extends ControllerBase {
     }
   }
 }
-
